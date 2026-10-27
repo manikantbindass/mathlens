@@ -9,7 +9,7 @@ public class LaunchTest extends ActivityInstrumentationTestCase2<MainActivity> {
     public LaunchTest(){super(MainActivity.class);}
     public void testHostedWorkspaceLoadsWithoutNativeBridge() throws Exception {
         MainActivity activity=getActivity();
-        WebView webView=activity.findViewById(1001);
+        WebView webView=activity.findViewById(R.id.workspace);
         boolean loaded=false;
         for(int attempt=0;attempt<60;attempt++){
             AtomicReference<String> value=new AtomicReference<>("");CountDownLatch latch=new CountDownLatch(1);

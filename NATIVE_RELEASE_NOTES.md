@@ -12,7 +12,7 @@ These clients open the deployed MathLens workspace at https://mathlens-wine.verc
 
 ## Android
 
-`MathLens-0.2.0-alpha.1-android-debug.apk` is a real, debug-signed APK for Android 8.0 and later. The debug package ID is dev.mathlens.app.debug. It is intended for direct testing, not Google Play. The workflow verifies its manifest/signature and launches it in an Android 10 emulator. Debug signing is temporary per runner; upgrades across builds may require uninstalling the earlier debug app. No production signing key is committed.
+`MathLens-0.2.0-alpha.1-android-debug.apk` is a real, debug-signed APK for Android 8.0 and later with an up-to-date Android System WebView. The debug package ID is dev.mathlens.app.debug. It is intended for direct testing, not Google Play. The workflow verifies its manifest/signature and launches it in an Android 15 emulator. Debug signing is temporary per runner; upgrades across builds may require uninstalling the earlier debug app. No production signing key is committed.
 
 ## iOS
 

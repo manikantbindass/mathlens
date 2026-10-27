@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
         webView=new WebView(this);
-        webView.setId(1001);
+        webView.setId(R.id.workspace);
         webView.setBackgroundColor(Color.rgb(5,5,5));
         WebSettings settings=webView.getSettings();
         settings.setJavaScriptEnabled(true);

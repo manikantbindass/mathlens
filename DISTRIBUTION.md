@@ -4,7 +4,7 @@
 
 The repository now contains `apps/desktop` (Electron) and `apps/android` (Java WebView). These are experimental **online clients** for https://mathlens-wine.vercel.app. They reuse the deployed web application and hosted computation APIs. They do not bundle an offline Node server or claim offline operation.
 
-`.github/workflows/native-release.yml` runs quality checks, builds a Windows NSIS installer, installs and smoke-tests it, builds a Linux AppImage and tests its packaged executable under Xvfb, then builds a real Android debug APK, runs its emulator test, and verifies its signature/manifest. A publish job requires all platform jobs to succeed and generates SHA256 checksums. The latest actual release/workflow is the authority for build availability; the earlier table below describes the initial state before this implementation.
+`.github/workflows/native-release.yml` runs quality checks, builds a Windows NSIS installer, installs and smoke-tests it, builds a Linux AppImage and tests its packaged executable under Xvfb, then builds a real Android debug APK, runs its emulator test, and verifies its signature/manifest. A publish job requires all platform jobs to succeed and generates SHA256 checksums. The latest actual release/workflow is the authority for build availability.
 
 ### Local native builds
 
@@ -18,20 +18,20 @@ Both require the hosted service and internet. No auto-updater or store publicati
 
 The Linux CI smoke test uses `--no-sandbox` only under the hosted runner's Xvfb restrictions. The distributed Electron client enables renderer sandboxing and disables Node integration. No local user security setting is changed by the build scripts.
 
-| Platform | Status | Artifact |
+## Availability
+
+| Platform | Build verification | Download |
 | --- | --- | --- |
-| Web | Local runtime bundle, build verified | `dist/` after npm run build |
-| Windows | Planned | None |
-| Linux | Planned | None |
-| Android | Planned | None |
+| Web | Runtime build and API tests passed | [Hosted workspace](https://mathlens-wine.vercel.app) |
+| Windows x64 | Installer built, installed, and launch/API smoke test passed in CI | [GitHub Releases](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases) after publication |
+| Linux x86_64 | AppImage built; packaged executable smoke test passed in CI | Same release after publication |
+| Android 8+ | APK build/emulator validation in progress | Published only after required checks pass |
 | iOS | Coming Soon | None |
 
-No installer, APK, AppImage, .deb or signed application exists. No fake download links or placeholder binaries are included.
+Native source, icons, build configuration, and acceptance checks are committed. The initial release is gated on all three platform jobs; a failed Android job prevents publishing the whole release. No production signing credentials are committed. Android uses temporary debug signing and Windows is unsigned.
 
-## Packaging evaluation
+## Build requirements and future distribution
 
-A shared web UI is appropriate, but the Node computation server is not automatically available inside a Tauri mobile shell. A future implementation must either move bounded computations behind a shared adapter that works locally in the webview, or connect the shell to a secured backend. CSP and navigation policies must be reviewed for the chosen runtime. Do not simply point native packaging at `dist/`, which contains a Node server rather than static native assets.
+The chosen clients use the hosted backend rather than bundling the Node runtime. Desktop builds use Electron and electron-builder; Android uses a Java WebView application with Android Gradle Plugin 8.9.2. This keeps the existing web stack and API behavior intact.
 
-Tauri 2 is a candidate, not an installed dependency. Consult the [official distribution documentation](https://v2.tauri.app/distribute/) at implementation time. Windows requires a supported Rust/WebView2 toolchain and installer verification on a clean machine. Linux needs native GTK/WebKit dependencies and platform package checks. Android needs the supported Android SDK/NDK, JDK, emulator/device tests and explicit debug/release signing. Apple platforms require a supported Apple build environment, Xcode and signing/provisioning.
-
-No Rust, Android or Apple project has been generated or tested here. Signing keys must remain outside source control. Release configuration currently packages the actual web source bundle only; native matrix jobs should be added once their source configuration and acceptance tests exist.
+Production distribution still needs stable owner-managed signing, broader device and operating-system verification, an update policy, and appropriate store provisioning. Apple builds require a supported Apple build environment, Xcode, signing and provisioning. No iOS binary, .deb package, or store release is claimed.
