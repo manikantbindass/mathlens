@@ -9,3 +9,9 @@ test-results/
 *.key
 
 .vercel/
+apps/desktop/dist/
+apps/android/.gradle/
+apps/android/**/build/
+apps/android/local.properties
+.artifact-build/
+assets/readme/frames/

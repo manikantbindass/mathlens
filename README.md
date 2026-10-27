@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/readme/header-static.svg">
+  <img src="assets/readme/header.gif" alt="MathLens: a point follows gradient descent on a quadratic loss curve" width="1200">
+</picture>
+
 # MathLens
 
 **Understand the mathematics. Explain the intelligence. Discover what comes next.**
@@ -11,6 +16,14 @@ A dependency-free mathematics and model-analysis workbench, styled with a near-b
 [Open MathLens](https://mathlens-wine.vercel.app) · [Sign in](https://mathlens-wine.vercel.app/#/login)
 
 Deployed to Vercel from this repository. Email authentication pages are included; the owner must configure Supabase before real sign-in is available.
+
+## Project explanation
+
+- [PowerPoint presentation](docs/MathLens-Project-Overview.pptx): 20 editable slides explaining the purpose, capabilities, architecture, algorithms, setup, security, and remaining work.
+- [PDF overview](docs/MathLens-Project-Overview.pdf): the matching readable presentation.
+- [Applications and downloads](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases): release assets appear after the native build, installation/launch, and APK checks succeed.
+
+The experimental Windows, Linux, and Android clients open the hosted workspace and require internet. Windows builds are unsigned; Android test APKs use debug signing. They do not provide offline computation. iOS remains **Coming Soon**. See [distribution details](DISTRIBUTION.md).
 
 ## Run
 
@@ -87,3 +100,8 @@ flowchart LR
 The referenced [upstream repository](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer) was empty when first inspected. The GitHub connector initially exposed read-only access; a subsequently verified GitHub CLI connection has write/admin permission and is used for source publication. The original repository name is retained for this deployment update. No native release has been produced.
 
 The owner has not selected a project license. No project LICENSE is imposed; obtain permission before redistribution. Geist and Geist Mono are independently licensed under the SIL Open Font License; their notices are included in `public/fonts/`.
+
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/readme/footer-static.svg">
+  <img src="assets/readme/footer.gif" alt="Understanding starts with a question. Compute, learn, discover." width="1200">
+</picture>
