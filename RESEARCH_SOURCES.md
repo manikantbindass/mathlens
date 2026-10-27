@@ -16,3 +16,7 @@ Records are editorial snapshots, not live ingestion or summaries of newly publis
 The supplied brief incorrectly described Goldbach as a Millennium problem. This is corrected in the UI. Historical summaries avoid single-civilization narratives and use approximate dates. Historical links beyond the checked zero source have not all been independently revalidated in this session. No claim of a current breakthrough, award recipient or solved conjecture is inferred from numerical evidence.
 
 Future ingestion must honor official APIs/feed policies, dates, authorship, source terms and rate limits. Keep preprints, accepted results, award announcements, open conjectures and speculative hypotheses distinct. Provider failure must not break the local workbench. No third-party text is reproduced at length.
+
+## Live arXiv feed
+
+The refined app now retrieves bounded Atom records from the official https://export.arxiv.org/api/query endpoint. Categories and pagination are allowlisted; record timestamps come from the source and retrieval time is separate. Abstract text is attributed to its authors, and records remain labeled Preprint. An actual adapter request succeeded during this pass. Provider outages fall back to curated references or a clearly stale cached feed. The cache/cooldown is per instance; a shared retrieval service is needed for coordinated quotas at larger scale. See the official API manual and terms at https://info.arxiv.org/help/api/user-manual.html and https://info.arxiv.org/help/api/tou.html.

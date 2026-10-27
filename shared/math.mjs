@@ -1,3 +1,4 @@
+import {leastSquares} from './linear-algebra.mjs';
 /** Bounded polynomial parser. No eval, Function, imports, property access or arbitrary code. */
 export function polynomial(input) {
   if (typeof input !== 'string' || input.length > 200) throw new Error('Enter a polynomial of up to 200 characters.');
@@ -71,23 +72,28 @@ export function regression({rows=sampleData(),degree=1,testFraction=0.2}={}) {
   const mean=train.reduce((s,r)=>s+r[0],0)/train.length;
   const scale=Math.sqrt(train.reduce((s,r)=>s+(r[0]-mean)**2,0)/train.length);
   if(scale<1e-12)throw new Error('Training x values must vary.');
-  const size=degree+1;const matrix=Array.from({length:size},()=>Array(size+1).fill(0));
-  for(const [x,y] of train){const z=(x-mean)/scale;for(let i=0;i<size;i++){for(let j=0;j<size;j++)matrix[i][j]+=z**(i+j);matrix[i][size]+=y*z**i;}}
-  for(let i=0;i<size;i++){let pivot=i;for(let k=i+1;k<size;k++)if(Math.abs(matrix[k][i])>Math.abs(matrix[pivot][i]))pivot=k;[matrix[i],matrix[pivot]]=[matrix[pivot],matrix[i]];if(Math.abs(matrix[i][i])<1e-10)throw new Error('Data cannot support this polynomial degree.');const v=matrix[i][i];for(let j=i;j<=size;j++)matrix[i][j]/=v;for(let k=0;k<size;k++)if(k!==i){const f=matrix[k][i];for(let j=i;j<=size;j++)matrix[k][j]-=f*matrix[i][j];}}
-  const coefficients=matrix.map(r=>r[size]);const predict=x=>evaluate(coefficients,(x-mean)/scale);
+  const size=degree+1;const design=train.map(([x])=>Array.from({length:size},(_,power)=>((x-mean)/scale)**power));
+  const coefficients=leastSquares(design,train.map(r=>r[1]));const predict=x=>evaluate(coefficients,(x-mean)/scale);
   const predictions=test.map(([x,y])=>({x,actual:y,predicted:predict(x),residual:y-predict(x)}));
   const mse=predictions.reduce((s,r)=>s+r.residual**2,0)/count,mae=predictions.reduce((s,r)=>s+Math.abs(r.residual),0)/count;
   const ymean=test.reduce((s,r)=>s+r[1],0)/count;const total=test.reduce((s,r)=>s+(r[1]-ymean)**2,0);
   const min=Math.min(...rows.map(r=>r[0])),max=Math.max(...rows.map(r=>r[0]));
-  return {model:degree===1?'Linear regression':`Polynomial regression (degree ${degree})`,coefficients,mean,scale,degree,seed:42,testFraction,trainingRows:train.length,testRows:count,metrics:{mae,mse,rmse:Math.sqrt(mse),r2:total>0?1-mse*count/total:null},predictions,rows,curve:Array.from({length:101},(_,i)=>{const x=min+(max-min)*i/100;return [x,predict(x)];}),equation:formatPolynomial(coefficients).replaceAll('x','z'),explanation:'Coefficients describe the fitted response in standardized training coordinates z = (x − mean) / scale. They describe association, not causation. Metrics use only the held-out test set. Small samples and a single split can mislead.'};
+  return {solver:'Householder QR',model:degree===1?'Linear regression':`Polynomial regression (degree ${degree})`,coefficients,mean,scale,degree,seed:42,testFraction,trainingRows:train.length,testRows:count,metrics:{mae,mse,rmse:Math.sqrt(mse),r2:total>0?1-mse*count/total:null},predictions,rows,curve:Array.from({length:101},(_,i)=>{const x=min+(max-min)*i/100;return [x,predict(x)];}),equation:formatPolynomial(coefficients).replaceAll('x','z'),explanation:'Coefficients describe the fitted response in standardized training coordinates z = (x − mean) / scale. They describe association, not causation. Metrics use only the held-out test set. Small samples and a single split can mislead.'};
 }
 export function gradientDescent({rate=0.1,initial=4,iterations=20}={}) {
   if(!Number.isFinite(rate)||rate<0.01||rate>1.1||!Number.isFinite(initial)||Math.abs(initial)>5||!Number.isInteger(iterations)||iterations<1||iterations>60)throw new Error('Invalid gradient descent parameters.');
   let x=initial;const points=[[0,x,x*x]];for(let i=1;i<=iterations;i++){x-=rate*2*x;points.push([i,x,x*x]);}return {points,final:x,loss:x*x,converges:rate<1,objective:'L(θ) = θ²',update:'θₜ₊₁ = θₜ − η · 2θₜ'};
 }
 export function puzzle(index=0,difficulty='foundation',category='algebra') {
-  if(!Number.isInteger(index)||index<0||index>1e6||!['foundation','intermediate','advanced'].includes(difficulty)||!['algebra','sequences','number-theory'].includes(category))throw new Error('Invalid puzzle settings.');
+  if(!Number.isInteger(index)||index<0||index>1e6||!['foundation','intermediate','advanced'].includes(difficulty)||!['algebra','sequences','number-theory','arithmetic','geometry','probability','logic','calculus','riddles','olympiad'].includes(category))throw new Error('Invalid puzzle settings.');
   const offset={foundation:0,intermediate:8,advanced:23}[difficulty];const n=3+(index*7+offset)%37;const a=2+(index+offset)%9;const b=4+(index*3+offset)%19;
+  if(category==='arithmetic')return {question:`Compute (${n} + ${b}) × ${a}.`,answer:(n+b)*a,hints:['Evaluate the parentheses first.',`${n} + ${b} = ${n+b}. Now multiply by ${a}.`],solution:`(${n} + ${b}) × ${a} = ${n+b} × ${a} = ${(n+b)*a}.`};
+  if(category==='geometry')return {question:`A rectangle has width ${a} and perimeter ${2*(a+n)}. What is its area?`,answer:a*n,hints:['Perimeter = 2 × (width + length).',`Length = ${2*(a+n)} / 2 − ${a} = ${n}.`],solution:`The length is ${n}, so the area is ${a} × ${n} = ${a*n} square units.`};
+  if(category==='probability')return {question:`A bag contains ${a} white balls and ${n} black balls. What is the probability that one uniformly random draw is white?`,answer:a/(a+n),hints:['Probability = favorable outcomes / total outcomes.',`There are ${a+n} balls in total.`],solution:`P(white) = ${a} / (${a} + ${n}) = ${a}/${a+n}. Any equivalent fraction or accurate decimal is accepted.`};
+  if(category==='logic')return {question:`A drawer has ${a} colors of socks, with at least two socks of every color. Without looking, how many socks guarantee at least one matching-color pair?`,answer:a+1,hints:['Consider the worst case: every sock so far has a different color.',`After ${a} different colors, one more sock must repeat a color.`],solution:`By the pigeonhole principle, ${a} + 1 = ${a+1} socks guarantee a repeated color.`};
+  if(category==='calculus')return {question:`For f(x) = ${a}x² + ${b}x, what is f′(${n})?`,answer:2*a*n+b,hints:['Differentiate using the power rule.',`f′(x) = ${2*a}x + ${b}. Substitute x = ${n}.`],solution:`f′(${n}) = ${2*a} × ${n} + ${b} = ${2*a*n+b}.`};
+  if(category==='riddles')return {question:`I think of a number, multiply it by ${a}, and add ${b}. The result is ${a*n+b}. What was my number?`,answer:n,hints:['Undo the addition before undoing the multiplication.',`Subtract ${b}, then divide by ${a}.`],solution:`(${a*n+b} − ${b}) / ${a} = ${n}.`};
+  if(category==='olympiad')return {question:`What is the sum of all integers from 1 through ${n}, inclusive?`,answer:n*(n+1)/2,hints:['Pair the first number with the last, the second with the next-to-last, and so on.',`Twice the sum is ${n} × ${n+1}.`],solution:`1 + 2 + … + ${n} = ${n}(${n}+1)/2 = ${n*(n+1)/2}.`};
   if(category==='sequences')return {question:`${n}, ${n+a}, ${n+2*a}, ${n+3*a}, … What comes next?`,answer:n+4*a,hints:['Find the difference between consecutive terms.',`Each term increases by ${a}.`],solution:`This arithmetic sequence has common difference ${a}. The next term is ${n+3*a} + ${a} = ${n+4*a}.`};
   if(category==='number-theory')return {question:`What is the remainder when ${n*a+b} is divided by ${a}?`,answer:(n*a+b)%a,hints:['A remainder must be smaller than the divisor.',`Find the largest multiple of ${a} that does not exceed ${n*a+b}.`],solution:`${n*a+b} = ${Math.floor((n*a+b)/a)} × ${a} + ${(n*a+b)%a}. The remainder is ${(n*a+b)%a}.`};
   return {question:`Solve for x: ${a}x + ${b} = ${a*n+b}`,answer:n,hints:[`Subtract ${b} from both sides.`,`Now divide both sides by ${a}.`],solution:`Subtract ${b}: ${a}x = ${a*n}. Divide by ${a}: x = ${n}.`};

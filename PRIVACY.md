@@ -7,3 +7,7 @@ Optional email/password accounts use Supabase. Email addresses and passwords are
 Progress and bookmarked record IDs are saved under `mathlens-puzzles` and `mathlens-bookmarks` in browser localStorage. Documentation & About provides local export and clear controls. Browser storage is not encrypted or suitable for secrets. Exported JSON files are managed by the user’s browser and operating system; clearing localStorage does not delete downloaded files.
 
 Fonts are bundled locally. Reference links open external institutional sites only when followed; those sites have their own policies. A future hosted operator may have infrastructure logs and must disclose retention and processing before collecting personal data. No claim of legal certification or regulatory compliance is made.
+
+## Refinement additions
+
+Experiment metadata (not raw uploaded rows) and bookmarked arXiv source records can now be stored in browser localStorage under mathlens-experiments and mathlens-feed-bookmarks. About exports and clears them alongside puzzle progress. Explicit result downloads may include raw numeric rows; these files remain under your control. The live research endpoint sends only a selected category and page to the fixed arXiv API, never your math expressions, uploads or account data. ArXiv feed cache is temporary and process-local.

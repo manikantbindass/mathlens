@@ -1,5 +1,11 @@
 # Security policy
 
+## Refinement boundaries
+
+New models use bounded observations and fixed algorithms; no user scripts, URLs or arbitrary expressions are executed. Classification is capped at 1,500 iterations/1,000 rows, K-means at 300 rows/200 iterations/five initializations, matrix dimensions at 6×6, and bisection at 200 iterations. The arXiv endpoint accepts only allowlisted categories/pages and calls a fixed HTTPS host with redirects rejected, streaming size cap 500 KB, eight-second timeout, bounded cache and provider cooldown. Browser Atom parsing rejects DTD/entities, escapes text and only links to arxiv.org abstracts. Arbitrary feed URLs and user data are never sent to the provider. Coordinating quotas across instances and independent security review remain open work.
+
+Supabase configuration refuses `sb_secret_` and legacy JWT service-role keys, even if mistakenly placed in the publishable-key environment field. API results from an earlier route no longer replace a newer route’s view.
+
 This alpha is intended for local use. It has not undergone an independent security assessment. Do not put confidential datasets into a public deployment without completing the production controls below.
 
 **Hosted/auth update:** Vercel deployment now has an explicit serverless adapter. Optional Supabase email accounts use server-verified identity, HttpOnly Secure SameSite cookies, PKCE email verification, 15 auth requests/minute/instance and no password/token logging. See AUTHENTICATION.md and PRIVACY.md. Older references below to absent accounts describe the initial alpha; accounts remain unavailable until the owner configures Supabase. Application quotas are not distributed, and provider SMTP/abuse controls still need owner configuration.

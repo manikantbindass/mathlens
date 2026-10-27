@@ -4,7 +4,9 @@ const cookieNames={access:'mathlens_access',refresh:'mathlens_refresh',verifier:
 const readCookies=req=>Object.fromEntries((req.headers.cookie??'').split(';').map(s=>s.trim().split(/=(.*)/s)).filter(parts=>parts[0]).map(([key,value])=>[key,value??'']));
 function configuration(env){
   const url=env.SUPABASE_URL,key=env.SUPABASE_PUBLISHABLE_KEY;
-  if(!url||!key)return null;
+  if(!url||!key||key.startsWith('sb_secret_'))return null;
+  // Legacy keys are JWTs. Refuse privileged service-role keys even if misconfigured by the owner.
+  if(key.split('.').length===3){try{if(JSON.parse(Buffer.from(key.split('.')[1],'base64url').toString()).role!=='anon')return null;}catch{return null;}}
   try{const parsed=new URL(url);if(parsed.protocol!=='https:'||parsed.username||parsed.password)return null;return {url:parsed.origin,key};}catch{return null;}
 }
 const publicUser=user=>user?.id?{id:user.id,email:user.email??'',emailConfirmed:Boolean(user.email_confirmed_at)}:null;

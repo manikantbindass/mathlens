@@ -4,12 +4,14 @@ import {fileURLToPath} from 'node:url';
 import {resolve,extname} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {calculate,regression,gradientDescent} from '../shared/math.mjs';
+import {classification,clustering,pca,matrixCalculation,numericalRoot,definiteIntegral,statistics,compareRegression} from '../shared/advanced.mjs';
+import {createResearch} from './research.mjs';
 import {createAuth} from './auth.mjs';
 const root=fileURLToPath(new URL('../public/',import.meta.url));
 const shared=fileURLToPath(new URL('../shared/',import.meta.url));
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2','.ttf':'font/ttf','.txt':'text/plain; charset=utf-8'};
 export function createRequestHandler(options={}){
-  const clients=new Map(),auth=createAuth(options);
+  const clients=new Map(),auth=createAuth(options),research=createResearch(options);
   return async(req,res)=>{
     const id=randomUUID(),start=performance.now();
     res.setHeader('X-Request-ID',id);res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');
@@ -18,7 +20,7 @@ export function createRequestHandler(options={}){
     res.on('finish',()=>{if(process.env.NODE_ENV!=='test')console.log(JSON.stringify({requestId:id,method:req.method,status:res.statusCode,durationMs:Math.round(performance.now()-start)}));});
     try{
       const path=typeof req.query?.route==='string'?'/api/'+req.query.route:new URL(req.url,'http://localhost').pathname;
-      if(path==='/api/v1/health'||path==='/api/v1/ready'){if(req.method!=='GET')return json(405,{error:'Use GET.'});return json(200,{status:'ok',version:'0.1.0-alpha.1',mode:'local-deterministic'});}
+      if(path==='/api/v1/health'||path==='/api/v1/ready'){if(req.method!=='GET')return json(405,{error:'Use GET.'});return json(200,{status:'ok',version:'0.2.0-alpha.1',mode:'deterministic'});}
       if(path.startsWith('/api/')){
         if(req.method==='GET'&&['/api/v1/auth/config','/api/v1/auth/session'].includes(path))return await auth(req,res,path);
         if(req.method!=='POST')return json(405,{error:'Use POST.'});
@@ -30,7 +32,8 @@ export function createRequestHandler(options={}){
         let body;try{body=JSON.parse(data);}catch{return json(400,{error:'Invalid JSON.'});}
         if(!body||Array.isArray(body)||typeof body!=='object')return json(400,{error:'Send a JSON object.'});
         if(authRequest)return await auth(req,res,path,body);
-        const handler={'/api/v1/calculate':calculate,'/api/v1/train':regression,'/api/v1/gradient':gradientDescent}[path];
+        if(path==='/api/v1/research'){try{return json(200,await research(body));}catch(error){return json(422,{error:error.message});}}
+        const handler={'/api/v1/classify':classification,'/api/v1/cluster':clustering,'/api/v1/pca':pca,'/api/v1/matrix':matrixCalculation,'/api/v1/root':numericalRoot,'/api/v1/integral':definiteIntegral,'/api/v1/statistics':statistics,'/api/v1/compare':compareRegression,'/api/v1/calculate':calculate,'/api/v1/train':regression,'/api/v1/gradient':gradientDescent}[path];
         if(!handler)return json(404,{error:'Unknown API endpoint.'});
         try{return json(200,handler(body));}catch(error){return json(422,{error:error.message,requestId:id});}
       }

@@ -10,6 +10,10 @@ Login, signup, account, recovery, PKCE email confirmation, password update, sess
 
 The original local acceptance inventory below records the broader 22-phase platform gaps. This update supersedes its earlier “accounts planned / no source push possible” entries. Source was published in commit fe5e8e1. Vercel production deployment dpl_4uHRdpHwicGNr6itzxKLXpycE9GE reached READY at https://mathlens-wine.vercel.app. HTTPS checks returned 200 for the page, health and auth configuration. Supabase configuration remains absent. Native apps, live research and advanced models remain unfinished.
 
+## Second refinement pass
+
+See REFINEMENT_AUDIT.md for the current per-feature inventory. It supersedes older planned-status entries for logistic regression, K-means, PCA, matrix/numerical/statistics tools, live arXiv, comparison, ten puzzle categories and nine lessons. The full production/native brief remains incomplete; no stable completion claim is made.
+
 ## Outcome
 
 Created a working local mathematics workbench from an empty folder and empty upstream repository, applying the requested Modern Dark system. The full master brief is **partially implemented**. This is not a production-ready, distributed, multi-platform research platform.

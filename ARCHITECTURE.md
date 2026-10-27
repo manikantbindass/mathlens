@@ -44,3 +44,7 @@ One Node process serves assets and APIs. A container can run behind an HTTPS rev
 ## Scaling
 
 Before public horizontal scaling: add shared abuse controls at the edge, bounded worker pools for any expensive symbolic work, observability, deployment smoke tests, and access controls if private server state is introduced. Do not add queues, databases or orchestration for the current bounded local workload. The master brief’s distributed jobs, caches and inference pipeline remain planned.
+
+## Numerical and feed refinement
+
+shared/linear-algebra.mjs isolates Householder QR. shared/advanced.mjs implements bounded one-feature logistic classification, two-feature clustering/PCA, matrix operations and numerical/statistical tools. public/advanced.mjs owns their forms and plots. server/research.mjs retrieves only fixed-host arXiv Atom feeds with category/page allowlists, bounded response streaming, an eight-second timeout, per-instance cache/cooldown and outage backoff. public/research.mjs parses Atom with browser DOMParser, rejects DTD/entities, escapes text and allowlists source links. No provider URLs are accepted from clients. No account or dataset is sent to arXiv. Shared distributed quotas remain an explicit production gap.

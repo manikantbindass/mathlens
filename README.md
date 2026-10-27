@@ -4,7 +4,7 @@
 
 A dependency-free mathematics and model-analysis workbench, styled with a near-black canvas, Geist typography, opaque graphite panels, and static mathematical illustrations.
 
-**Version: 0.1.0-alpha.1.** This is a working web alpha, not the completed production platform in the master brief. Native packages are not available. Vercel deployment and optional Supabase email authentication are supported; see AUTHENTICATION.md for required owner configuration.
+**Version: 0.2.0-alpha.1.** This is a working web alpha, not the completed production platform in the master brief. Native packages are not available. Vercel deployment and optional Supabase email authentication are supported; see AUTHENTICATION.md for required owner configuration.
 
 ## Live application
 
@@ -24,22 +24,26 @@ Open [http://127.0.0.1:4173](http://127.0.0.1:4173). For reload during developme
 
 Configure `HOST`, `PORT`, and `NODE_ENV` through your shell, or copy `.env.example` to `.env` and run `node --env-file=.env server/index.mjs`. The default host is loopback. Do not expose the development alpha directly to the internet.
 
+## Current refinement
+
+The second pass adds binary logistic classification, K-means, PCA, regression comparison, a local experiment notebook, matrix operations, numerical roots, definite integrals, statistics, a live arXiv feed, ten puzzle categories and nine lessons. Regression uses Householder QR for improved numerical stability. See [the current refinement audit](REFINEMENT_AUDIT.md) for exact implemented limits and unfinished master-brief requirements. New views still need rendered verification because browser use is disabled.
+
 ## Working features
 
 | Module | Actual behavior |
 | --- | --- |
 | Overview | Responsive workspace with links to every module and a sampled quadratic loss surface |
-| AI Model Lab | Real backend least-squares linear / polynomial regression, degrees 1–3; bounded numeric CSV; fixed-seed held-out evaluation; coefficients, predictions, residuals, JSON export |
-| Equation Explorer | Safe polynomial parser; simplify, differentiate, integrate to degree 8; real linear/quadratic root solving; procedural explanations and JSON export |
+| AI Model Lab | Real backend QR least-squares regression, binary logistic classification, two-feature K-means/PCA and reproducible comparison; bounded numeric CSV; fixed-seed held-out evaluation; coefficients, predictions, residuals, JSON export |
+| Equation Explorer | Safe polynomial calculus; linear/quadratic roots, bisection, definite integration, matrix operations up to 6×6 and statistics; JSON exports |
 | Visualizations | Actual gradient descent on θ²; configurable learning rate, initial value and iteration count; complete loss trace |
-| Puzzle Arena | Three categories, three parameter ranges, numeric/fraction answers, hints, solutions, streaks, local progress, daily selection |
-| Learning Paths | Three lessons with worked examples and checked exercises |
-| Research | Three sourced records, search, type filters, local bookmarks; explicitly a curated snapshot |
+| Puzzle Arena | Ten categories, three parameter ranges, numeric/fraction answers, hints, solutions, streaks, local progress, daily selection |
+| Learning Paths | Nine lessons with worked examples and checked exercises |
+| Research | Curated sources plus bounded live arXiv category feeds, source dates/types, search, bookmarks, pagination and graceful fallbacks |
 | Open Problems | Six open Millennium problems with official source links and checked date |
 | Timeline | Seven editorial entries across cultures, search and field filters, links for further reading |
 | Documentation | Limits, API overview, privacy, local export/deletion and honest distribution status |
 
-Optional accounts have sign-in, signup, verification, recovery, refresh and sign-out pages with a server-side Supabase adapter. They need SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY; a missing provider is shown honestly. Account progress sync, a research database, generative AI, live research ingestion, native binaries, SHAP, classification and clustering remain unimplemented. See [the acceptance report](COMPLETION_REPORT.md) for statuses and remaining work.
+Optional accounts have sign-in, signup, verification, recovery, refresh and sign-out pages with a server-side Supabase adapter. They need SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY; a missing provider is shown honestly. Account progress sync, a durable research database, generative AI, native binaries, SHAP, trees/forests/boosting and neural networks remain unimplemented. See [the acceptance report](COMPLETION_REPORT.md) for statuses and remaining work.
 
 ## Validate & build
 
