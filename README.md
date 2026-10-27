@@ -53,9 +53,15 @@ The experimental Windows, Linux, and Android clients open the hosted workspace a
 | --- | --- |
 | Windows x64 | [Unsigned installer](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-windows-x64-unsigned.exe) |
 | Linux x86_64 | [AppImage](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-linux-x86_64.AppImage) |
-| Android 8+ with current System WebView | [Debug-signed APK](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-android-debug.apk) |
+| Android 15+ with current System WebView | [Android 15+ APK — 0.2.0-alpha.2](https://github.com/manikantbindass/mathlens/releases/download/android-v0.2.0-alpha.2/MathLens-0.2.0-alpha.2-android15plus-debug.apk) |
 
 [Release notes and SHA256 checksums](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1) explain installation, testing, and limitations. All three clients require internet. iOS remains Coming Soon.
+
+### Android 15+ installation
+
+Download the APK directly from the Android row above, or open the [Android 15+ release](https://github.com/manikantbindass/mathlens/releases/tag/android-v0.2.0-alpha.2) and expand **Assets**. Download the `.apk`, not the source-code ZIP, then open it with Android's package installer. This is a debug-signed online testing client and requires internet.
+
+The APK requires Android 15 or newer (minimum SDK 35), with version code 3. Its build and calculation smoke test run on Android 15 and 16 emulators. [Installation notes and limitations](ANDROID_RELEASE_NOTES.md) explain possible certificate conflicts when upgrading the earlier debug alpha. Export important local data before uninstalling an older test app. Production signing and Play Store distribution are not included.
 
 ## Run
 

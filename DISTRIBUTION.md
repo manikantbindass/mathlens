@@ -10,7 +10,7 @@ The repository now contains `apps/desktop` (Electron) and `apps/android` (Java W
 
 - Desktop prerequisites: Node 24, internet for Electron tooling downloads, and a supported Windows or Linux host. Run `npm ci` in `apps/desktop`, followed by `npm run package:win` or `npm run package:linux`. Packages appear in `apps/desktop/dist`. Windows binaries are unsigned. Linux AppImage runtime support varies by distribution.
 - Android prerequisites: JDK 17, Android SDK platform/build-tools 35, and Gradle 8.11.1. Run `gradle -p apps/android :app:assembleDebug :app:lintDebug`. The APK appears at `apps/android/app/build/outputs/apk/debug/app-debug.apk`. For repeatable supported-host builds, use the supplied GitHub workflow rather than an unconfigured local SDK.
-- Android minimum version: Android 8.0 (API 26). Debug application ID: `dev.mathlens.app.debug`. Debug signing is for testing only and can change between hosted runners. No production keystore is committed.
+- Current Android client minimum version: Android 15 (API 35), version 0.2.0-alpha.2 / code 3. The older 0.2.0-alpha.1 release retains its historical Android 8+ package. Debug application ID: `dev.mathlens.app.debug`. Debug signing is for testing only and can change between hosted runners. No production keystore is committed.
 
 ### Limits of these clients
 
@@ -25,7 +25,7 @@ The Linux CI smoke test uses `--no-sandbox` only under the hosted runner's Xvfb 
 | Web | Runtime build and API tests passed | [Hosted workspace](https://mathlens-wine.vercel.app) |
 | Windows x64 | Installer built, installed, and launch/API smoke test passed in CI | [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1) |
 | Linux x86_64 | AppImage built; packaged executable smoke test passed in CI | Same published prerelease |
-| Android 8+ | APK build, lint, Android 15 emulator test, and signature verification passed | Same published prerelease |
+| Android 15+ | APK build, lint, Android 15 and 16 emulator launch/calculation tests, and signature verification | [Android-specific release](https://github.com/manikantbindass/mathlens/releases/tag/android-v0.2.0-alpha.2) |
 | iOS | Coming Soon | None |
 
 Native source, icons, build configuration, and acceptance checks are committed. The initial release passed all three platform jobs and is publicly available. The workflow gates future publication on every required check. [Successful build and publication run](https://github.com/manikantbindass/mathlens/actions/runs/40572776386). No production signing credentials are committed. Android uses temporary debug signing and Windows is unsigned.
@@ -35,3 +35,9 @@ Native source, icons, build configuration, and acceptance checks are committed. 
 The chosen clients use the hosted backend rather than bundling the Node runtime. Desktop builds use Electron and electron-builder; Android uses a Java WebView application with Android Gradle Plugin 8.9.2. This keeps the existing web stack and API behavior intact.
 
 Production distribution still needs stable owner-managed signing, broader device and operating-system verification, an update policy, and appropriate store provisioning. Apple builds require a supported Apple build environment, Xcode, signing and provisioning. No iOS binary, .deb package, or store release is claimed.
+
+## Android 15+ rebuild
+
+The current Android-only workflow is `.github/workflows/android-release.yml`. It requires Android 15+ (minimum SDK 35), compiles and targets SDK 35, and runs installation, hosted UI, and real calculation checks on API 35 and API 36 emulators. Its publication job verifies an anonymous download and compares the downloaded APK byte-for-byte with the built file. [Build and download verification](https://github.com/manikantbindass/mathlens/actions/runs/40579499663).
+
+The Android client has its own version, 0.2.0-alpha.2. The web and desktop versions remain 0.2.0-alpha.1. Use the explicit Android release/download links; GitHub's stable `/releases/latest` endpoint does not select prereleases. [Android installation notes](ANDROID_RELEASE_NOTES.md).
