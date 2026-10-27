@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Understand the mathematics. Explain the intelligence. A working mathematics and machine learning workbench.">
+  <title>MathLens — A clearer view of mathematics</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <aside class="sidebar" id="sidebar" aria-label="Primary navigation"></aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="crumb"><button id="menu-toggle" class="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded="false">☰</button><span>Workspace</span><span class="slash">/</span><span id="breadcrumb">Overview</span></div>
+      <div class="top-actions"><button id="search-button" class="search-trigger" aria-label="Search workspace"><span id="search-icon"></span><span>Search anything</span><kbd>Ctrl K</kbd></button><a class="icon-button source-link" href="https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer" aria-label="Source repository" target="_blank" rel="noreferrer">↗</a><a id="account-control" class="button small account-control" href="#/login">Sign in</a></div>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <footer><span class="footer-brand">MathLens <span> / </span> Mathematics, made visible.</span><div><a href="#/about">Documentation</a><a href="#/about?section=privacy">Privacy</a><span class="mono">v0.1 · web alpha</span></div></footer>
+  </div>
+  <dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-heading"><h2 id="search-title">Explore MathLens</h2><button class="icon-button" id="close-search" aria-label="Close search">×</button></div><label class="sr-only" for="global-search">Search tools and reference records</label><input id="global-search" type="search" placeholder="Tools, ideas, papers, problems…" autocomplete="off"><div id="search-results"></div><p class="meta">Search the local reference collection. Escape to close.</p></dialog>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>

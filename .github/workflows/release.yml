@@ -1,0 +1,41 @@
+name: Prepare web prerelease
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tested prerelease tag, for example v0.1.0-alpha.1
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  web-prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate prerelease tag format
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: '[[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+$ ]]'
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - name: Check version and prepare real web artifact
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          test "v$(node -p "JSON.parse(require('fs').readFileSync('package.json')).version")" = "$RELEASE_TAG"
+          test -s dist/server/index.mjs
+          test -s dist/public/fonts/Geist.ttf
+          tar -czf mathlens-web.tar.gz -C dist .
+          sha256sum mathlens-web.tar.gz > SHA256SUMS.txt
+      - name: Create draft prerelease (manual publication required)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: gh release create "$RELEASE_TAG" mathlens-web.tar.gz SHA256SUMS.txt --draft --prerelease --title "MathLens $RELEASE_TAG — web alpha" --notes-file RELEASE_NOTES.md
