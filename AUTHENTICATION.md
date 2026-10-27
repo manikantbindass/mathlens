@@ -6,7 +6,7 @@ Login, signup, password recovery, PKCE confirmation, password update, refresh, a
 
 1. In the Vercel **MathLens** project, add `SUPABASE_URL` (your HTTPS project URL) and `SUPABASE_PUBLISHABLE_KEY` (the public publishable key, or legacy public anon key) to Production. Set Preview separately if needed. Never use a service-role or `sb_secret_…` key.
 2. Redeploy after adding variables. Local development uses the same names from `.env.example` with `node --env-file=.env server/index.mjs`.
-3. In Supabase Authentication → URL Configuration, set Site URL to the verified production origin. Add the exact redirect URL `https://YOUR-VERIFIED-DOMAIN/?auth_callback=1` to the redirect allowlist. Add `http://127.0.0.1:4173/?auth_callback=1` only for local testing. Keep verification links in the same browser used for the request.
+3. In Supabase Authentication → URL Configuration, set Site URL to the verified production origin. Add the exact redirect URL `https://mathlens-wine.vercel.app/?auth_callback=1` to the redirect allowlist. Add `http://127.0.0.1:4173/?auth_callback=1` only for local testing. Keep verification links in the same browser used for the request.
 4. Keep email confirmation enabled. Configure a production SMTP provider and appropriate Supabase email/password/rate policies before opening registration to the public. Default Supabase email delivery is limited and may only permit project-team recipients; no email delivery has been verified here.
 5. Verify signup → actual email confirmation → account, invalid login, session refresh, sign-out and recovery → actual email → new password with a test account you control.
 

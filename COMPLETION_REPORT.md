@@ -8,7 +8,7 @@ The user requested Vercel deployment, GitHub source publication and Supabase ema
 
 Login, signup, account, recovery, PKCE email confirmation, password update, session refresh and logout are implemented. Ten additional adapter/auth tests passed, bringing the suite to **27/27**. Provider tests use an injected fixture; live Supabase authentication remains blocked by the owner’s pending `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, email and redirect configuration. The owner chose to set the environment variables in Vercel. A disabled setup state is intentional; no fake session is created.
 
-The original local acceptance inventory below records the broader 22-phase platform gaps. This update supersedes its earlier “accounts planned / no source push possible” entries. Vercel/GitHub verification URLs will be recorded after actual publication. Native apps, live research and advanced models remain unfinished.
+The original local acceptance inventory below records the broader 22-phase platform gaps. This update supersedes its earlier “accounts planned / no source push possible” entries. Source was published in commit fe5e8e1. Vercel production deployment dpl_4uHRdpHwicGNr6itzxKLXpycE9GE reached READY at https://mathlens-wine.vercel.app. HTTPS checks returned 200 for the page, health and auth configuration. Supabase configuration remains absent. Native apps, live research and advanced models remain unfinished.
 
 ## Outcome
 

@@ -6,6 +6,12 @@ A dependency-free mathematics and model-analysis workbench, styled with a near-b
 
 **Version: 0.1.0-alpha.1.** This is a working web alpha, not the completed production platform in the master brief. Native packages are not available. Vercel deployment and optional Supabase email authentication are supported; see AUTHENTICATION.md for required owner configuration.
 
+## Live application
+
+[Open MathLens](https://mathlens-wine.vercel.app) · [Sign in](https://mathlens-wine.vercel.app/#/login)
+
+Deployed to Vercel from this repository. Email authentication pages are included; the owner must configure Supabase before real sign-in is available.
+
 ## Run
 
 Requires Node.js 24–26. Tested with Node.js 24.14.1 on Windows. No package installation or API key is required.
