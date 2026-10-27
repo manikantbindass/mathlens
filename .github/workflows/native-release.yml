@@ -133,13 +133,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: {pattern: 'desktop-*', path: release-assets/, merge-multiple: true}
+        with: {pattern: 'desktop-*', path: desktop-artifacts/, merge-multiple: true}
       - uses: actions/download-artifact@v4
         with: {name: android-debug, path: release-assets/}
       - uses: actions/download-artifact@v4
         with: {name: web-and-documents, path: release-assets/}
       - name: Require real artifacts and generate checksums
         run: |
+          find desktop-artifacts -type f -exec cp -t release-assets/ {} +
           test -s release-assets/MathLens-0.2.0-alpha.1-windows-x64-unsigned.exe
           test -s release-assets/MathLens-0.2.0-alpha.1-linux-x86_64.AppImage
           test -s release-assets/MathLens-0.2.0-alpha.1-android-debug.apk

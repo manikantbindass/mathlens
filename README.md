@@ -7,9 +7,9 @@
 
 **Understand the mathematics. Explain the intelligence. Discover what comes next.**
 
-A dependency-free mathematics and model-analysis workbench, styled with a near-black canvas, Geist typography, opaque graphite panels, and static mathematical illustrations.
+A mathematics and model-analysis workbench with a dependency-free web core, styled with a near-black canvas, Geist typography, opaque graphite panels, and static mathematical illustrations.
 
-**Version: 0.2.0-alpha.1.** This is a working web alpha, not the completed production platform in the master brief. Native packages are not available. Vercel deployment and optional Supabase email authentication are supported; see AUTHENTICATION.md for required owner configuration.
+**Version: 0.2.0-alpha.1.** The web alpha and experimental native client source are implemented. Native downloads are published to [GitHub Releases](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases) after the platform build and launch checks pass. Optional Supabase email authentication requires owner configuration; see [authentication setup](AUTHENTICATION.md).
 
 ## Live application
 
