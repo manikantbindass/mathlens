@@ -17,6 +17,28 @@ A mathematics and model-analysis workbench with a dependency-free web core, styl
 
 Deployed to Vercel from this repository. Email authentication pages are included; the owner must configure Supabase before real sign-in is available.
 
+## Project screenshots
+
+These actual screenshots document the initial visual alpha, captured on 27 October 2026. They show the overview at three responsive widths; account controls, version labels, and later feature additions differ in the current release. [Try the current live workspace](https://mathlens-wine.vercel.app).
+
+### Desktop workspace
+
+The sidebar groups the model lab, equation tools, research, puzzles, and learning. The overview offers direct starting points and a quadratic loss-surface illustration; this illustration is separate from computed model results.
+
+![MathLens initial desktop overview with sidebar navigation, starting actions, and quadratic loss surface](docs/screenshots/overview-desktop.jpg)
+
+### Tablet layout
+
+The full overview carries the same navigation and shows the tool entry cards, open-problem introduction, timeline, puzzle invitation, and learning link. This is a narrower rendering of the same page, rather than a separate feature screen.
+
+<img src="docs/screenshots/overview-tablet.jpg" alt="Full initial MathLens overview at tablet width, including feature cards, research introductions, and footer" width="760">
+
+### Mobile layout
+
+The overview stacks its content into one column and replaces the fixed sidebar with a menu control. The primary actions and footer remain part of the reading order.
+
+<img src="docs/screenshots/overview-mobile.jpg" alt="Full initial MathLens mobile overview with stacked actions, product illustration, feature cards, and footer" width="375">
+
 ## Project explanation
 
 - [PowerPoint presentation](docs/MathLens-Project-Overview.pptx): 20 editable slides explaining the purpose, capabilities, architecture, algorithms, setup, security, and remaining work.
@@ -66,7 +88,7 @@ The second pass adds binary logistic classification, K-means, PCA, regression co
 | Timeline | Seven editorial entries across cultures, search and field filters, links for further reading |
 | Documentation | Limits, API overview, privacy, local export/deletion and honest distribution status |
 
-Optional accounts have sign-in, signup, verification, recovery, refresh and sign-out pages with a server-side Supabase adapter. They need SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY; a missing provider is shown honestly. Account progress sync, a durable research database, generative AI, native binaries, SHAP, trees/forests/boosting and neural networks remain unimplemented. See [the acceptance report](COMPLETION_REPORT.md) for statuses and remaining work.
+Optional accounts have sign-in, signup, verification, recovery, refresh and sign-out pages with a server-side Supabase adapter. They need SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY; a missing provider is shown honestly. Account progress sync, a durable research database, generative AI, production-signed native packages, SHAP, trees/forests/boosting and neural networks remain unimplemented. See [the acceptance report](COMPLETION_REPORT.md) for statuses and remaining work.
 
 ## Validate & build
 
