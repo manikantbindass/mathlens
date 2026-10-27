@@ -9,7 +9,7 @@
 
 A mathematics and model-analysis workbench with a dependency-free web core, styled with a near-black canvas, Geist typography, opaque graphite panels, and static mathematical illustrations.
 
-**Version: 0.2.0-alpha.1.** The web alpha and experimental native client source are implemented. Tested native downloads are available in the [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1). Optional Supabase email authentication requires owner configuration; see [authentication setup](AUTHENTICATION.md).
+**Version: 0.2.0-alpha.1.** The web alpha and experimental native client source are implemented. Tested native downloads are available in the [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1). Optional Supabase email authentication requires owner configuration; see [authentication setup](AUTHENTICATION.md).
 
 ## Live application
 
@@ -21,7 +21,7 @@ Deployed to Vercel from this repository. Email authentication pages are included
 
 - [PowerPoint presentation](docs/MathLens-Project-Overview.pptx): 20 editable slides explaining the purpose, capabilities, architecture, algorithms, setup, security, and remaining work.
 - [PDF overview](docs/MathLens-Project-Overview.pdf): the matching readable presentation.
-- [Applications and downloads](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1): platform build, installation/launch, and APK checks passed.
+- [Applications and downloads](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1): platform build, installation/launch, and APK checks passed.
 
 The experimental Windows, Linux, and Android clients open the hosted workspace and require internet. Windows builds are unsigned; Android test APKs use debug signing. They do not provide offline computation. iOS remains **Coming Soon**. See [distribution details](DISTRIBUTION.md).
 
@@ -29,11 +29,11 @@ The experimental Windows, Linux, and Android clients open the hosted workspace a
 
 | Platform | Package |
 | --- | --- |
-| Windows x64 | [Unsigned installer](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-windows-x64-unsigned.exe) |
-| Linux x86_64 | [AppImage](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-linux-x86_64.AppImage) |
-| Android 8+ with current System WebView | [Debug-signed APK](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-android-debug.apk) |
+| Windows x64 | [Unsigned installer](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-windows-x64-unsigned.exe) |
+| Linux x86_64 | [AppImage](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-linux-x86_64.AppImage) |
+| Android 8+ with current System WebView | [Debug-signed APK](https://github.com/manikantbindass/mathlens/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-android-debug.apk) |
 
-[Release notes and SHA256 checksums](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1) explain installation, testing, and limitations. All three clients require internet. iOS remains Coming Soon.
+[Release notes and SHA256 checksums](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1) explain installation, testing, and limitations. All three clients require internet. iOS remains Coming Soon.
 
 ## Run
 
@@ -107,7 +107,7 @@ flowchart LR
 
 ## Repository & license
 
-The referenced [upstream repository](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer) was empty when first inspected. The GitHub connector initially exposed read-only access; a subsequently verified GitHub CLI connection has write/admin permission and is used for source publication. The original repository name is retained for this deployment update. No native release has been produced.
+The referenced [upstream repository](https://github.com/manikantbindass/mathlens) was empty when first inspected. The GitHub connector initially exposed read-only access; a subsequently verified GitHub CLI connection has write/admin permission and is used for source publication. The original repository name is retained for this deployment update. No native release has been produced.
 
 The owner has not selected a project license. No project LICENSE is imposed; obtain permission before redistribution. Geist and Geist Mono are independently licensed under the SIL Open Font License; their notices are included in `public/fonts/`.
 

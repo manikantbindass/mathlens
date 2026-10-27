@@ -23,12 +23,12 @@ The Linux CI smoke test uses `--no-sandbox` only under the hosted runner's Xvfb 
 | Platform | Build verification | Download |
 | --- | --- | --- |
 | Web | Runtime build and API tests passed | [Hosted workspace](https://mathlens-wine.vercel.app) |
-| Windows x64 | Installer built, installed, and launch/API smoke test passed in CI | [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1) |
+| Windows x64 | Installer built, installed, and launch/API smoke test passed in CI | [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/mathlens/releases/tag/v0.2.0-alpha.1) |
 | Linux x86_64 | AppImage built; packaged executable smoke test passed in CI | Same published prerelease |
 | Android 8+ | APK build, lint, Android 15 emulator test, and signature verification passed | Same published prerelease |
 | iOS | Coming Soon | None |
 
-Native source, icons, build configuration, and acceptance checks are committed. The initial release passed all three platform jobs and is publicly available. The workflow gates future publication on every required check. [Successful build and publication run](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/actions/runs/40572776386). No production signing credentials are committed. Android uses temporary debug signing and Windows is unsigned.
+Native source, icons, build configuration, and acceptance checks are committed. The initial release passed all three platform jobs and is publicly available. The workflow gates future publication on every required check. [Successful build and publication run](https://github.com/manikantbindass/mathlens/actions/runs/40572776386). No production signing credentials are committed. Android uses temporary debug signing and Windows is unsigned.
 
 ## Build requirements and future distribution
 
