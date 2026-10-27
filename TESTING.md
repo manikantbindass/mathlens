@@ -4,6 +4,8 @@
 
 The suite now passes **49/49** tests, adding independent QR/logistic/clustering/PCA/matrix/bisection/integral/statistics fixtures, comparison configuration, 2,100 new puzzle instances, privileged-key rejection and bounded research retrieval/cache/outage tests. Together with the original 900 puzzle instances, 3,000 generated category/range cases are checked. Earlier coverage percentages below belong to the initial code and are not asserted for the expanded modules.
 
+Final refined commit `0438c4b` passed GitHub Actions run 40554155853 on Ubuntu and Windows (Node 24) and its security scan. Production HTTPS smoke tests passed all nine new/refined model/math endpoints, health version 0.2.0-alpha.1, required assets and real arXiv retrieval. Auth config remains false. These are API/source checks, not browser screenshots or interaction verification.
+
 One actual official arXiv API request succeeded (16,619 XML characters). Initial remote GitHub CI runs passed on Windows and Linux plus the security scan. Browser use is disabled in Work settings; new rendered views, XML-to-card rendering, notebook buttons and responsive controls are implemented but not visually verified. API tests are not presented as a substitute for those UI checks.
 
 ## Authentication / deployment adapter update

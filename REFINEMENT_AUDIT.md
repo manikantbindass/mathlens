@@ -2,6 +2,12 @@
 
 This inventory supersedes the initial alpha inventory where functionality has changed. **The full 22-phase master brief is not complete.**
 
+## Published verification
+
+Version **0.2.0-alpha.1** is live at https://mathlens-wine.vercel.app from commit `0438c4b9b30a57e65522ff738b9ed9b5f7a08d30`. Vercel deployment `dpl_36krb3uURxdoKQoyS5CtUwT4VgSS` reached READY. Direct HTTPS smoke checks passed for classify, cluster, PCA, matrix inverse, bisection, definite integral, statistics, comparison and QR regression; expected numerical values and structural invariants were checked. The production arXiv endpoint returned a real 16,619-character feed. New JavaScript/shared modules and stylesheet returned 200.
+
+The final local suite passed **49/49**; all 22 JavaScript modules passed syntax checks; both runtime and Vercel asset builds succeeded. GitHub Actions run `40554155853` succeeded: Ubuntu Node 24, Windows Node 24, and security scan. Supabase still reports configured:false. Browser use remains disabled, so no new rendered-UI pass is asserted.
+
 ## Second-pass capabilities
 
 | Area | Actual implementation and evidence |
