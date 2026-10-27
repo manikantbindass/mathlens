@@ -9,7 +9,7 @@
 
 A mathematics and model-analysis workbench with a dependency-free web core, styled with a near-black canvas, Geist typography, opaque graphite panels, and static mathematical illustrations.
 
-**Version: 0.2.0-alpha.1.** The web alpha and experimental native client source are implemented. Native downloads are published to [GitHub Releases](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases) after the platform build and launch checks pass. Optional Supabase email authentication requires owner configuration; see [authentication setup](AUTHENTICATION.md).
+**Version: 0.2.0-alpha.1.** The web alpha and experimental native client source are implemented. Tested native downloads are available in the [v0.2.0-alpha.1 prerelease](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1). Optional Supabase email authentication requires owner configuration; see [authentication setup](AUTHENTICATION.md).
 
 ## Live application
 
@@ -21,9 +21,19 @@ Deployed to Vercel from this repository. Email authentication pages are included
 
 - [PowerPoint presentation](docs/MathLens-Project-Overview.pptx): 20 editable slides explaining the purpose, capabilities, architecture, algorithms, setup, security, and remaining work.
 - [PDF overview](docs/MathLens-Project-Overview.pdf): the matching readable presentation.
-- [Applications and downloads](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases): release assets appear after the native build, installation/launch, and APK checks succeed.
+- [Applications and downloads](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1): platform build, installation/launch, and APK checks passed.
 
 The experimental Windows, Linux, and Android clients open the hosted workspace and require internet. Windows builds are unsigned; Android test APKs use debug signing. They do not provide offline computation. iOS remains **Coming Soon**. See [distribution details](DISTRIBUTION.md).
+
+## Download applications
+
+| Platform | Package |
+| --- | --- |
+| Windows x64 | [Unsigned installer](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-windows-x64-unsigned.exe) |
+| Linux x86_64 | [AppImage](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-linux-x86_64.AppImage) |
+| Android 8+ with current System WebView | [Debug-signed APK](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/download/v0.2.0-alpha.1/MathLens-0.2.0-alpha.1-android-debug.apk) |
+
+[Release notes and SHA256 checksums](https://github.com/manikantbindass/MathInsightAI-Explainable-Math-AI-Model-Analyzer/releases/tag/v0.2.0-alpha.1) explain installation, testing, and limitations. All three clients require internet. iOS remains Coming Soon.
 
 ## Run
 
